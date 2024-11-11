@@ -1,0 +1,16 @@
+<div class="cinema">
+  <div class="screen">Tela</div> <!-- Tela na frente dos assentos -->
+  <div class="seats">
+    <button
+      *ngFor="let assento of assentos"
+      [class.ocupado]="assento.ocupado"
+      (click)="selecionarAssento(assento)"
+    >
+      {{ assento.numero }}
+    </button>
+  </div>
+  <div class="legenda">
+    <div class="status disponível">Disponível</div>
+    <div class="status ocupado">Ocupado</div>
+  </div>
+</div>

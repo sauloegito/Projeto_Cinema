@@ -1,0 +1,45 @@
+.pagina-filmes {
+    margin-top: 117px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.lista-filmes {
+    width: 100%;
+    margin-top: 40px;
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filme {
+    width: 145px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    /* Exibe a imagem e o título em coluna */
+    align-items: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.cartaz img {
+    width: 129px;
+    height: 193px;
+    border-radius: 3px;
+}
+
+.titulo {
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #293845;
+    text-align: center;
+}

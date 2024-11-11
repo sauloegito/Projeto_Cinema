@@ -1,0 +1,9 @@
+<div class="sessao-container">
+    <h3>Selecione o horário da sessão</h3>
+    <div class="sessao-horarios">
+      <button *ngFor="let horario of sessoes" (click)="selecionarSessao(horario)">
+        {{ horario }}
+      </button>
+    </div>
+  </div>
+  

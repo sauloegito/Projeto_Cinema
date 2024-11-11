@@ -1,0 +1,14 @@
+<div class="pagina-filmes">
+    <h3>Selecione o filme</h3>
+    <div class="lista-filmes" *ngIf="filmes.length > 0; else semFilmes">
+        <div *ngFor="let filme of filmes" class="filme" [routerLink]="['/sessao', filme.id]">
+            <div class="cartaz">
+                <img [src]="filme.posterURL" [alt]="filme.titulo" />
+            </div>
+            <p class="titulo">{{ filme.titulo }}</p> <!-- Exibe o título do filme -->
+        </div>
+    </div>
+    <ng-template #semFilmes>
+        <p>Nenhum filme cadastrado.</p>
+    </ng-template>
+</div>

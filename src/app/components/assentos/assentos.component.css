@@ -1,0 +1,101 @@
+/* Estilo geral para o componente cinema */
+.cinema {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  width: 90%; /* Ajuste conforme necessário */
+  max-width: 800px; /* Limita a largura máxima do componente */
+  background-color: #f2f2f2; /* Cor de fundo leve */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 20px; /* Espaçamento interno */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
+}
+
+/* Estilo da tela */
+.screen {
+  width: 100%;
+  height: 50px; /* Altura da tela */
+  background-color: #333; /* Cor da tela */
+  color: white; /* Cor do texto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold; /* Texto em negrito */
+  margin-bottom: 20px; /* Espaçamento abaixo da tela */
+  border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Estilo dos assentos */
+.seats {
+  display: grid; /* Usar grid para organização dos assentos */
+  grid-template-columns: repeat(10, 1fr); /* 10 colunas */
+  gap: 10px; /* Espaçamento entre os botões dos assentos */
+  margin-bottom: 20px; /* Espaçamento abaixo da área dos assentos */
+}
+
+/* Estilo dos botões dos assentos */
+.seats button {
+  padding: 10px; /* Espaçamento interno do botão */
+  background-color: #28a745; /* Cor do botão disponível */
+  color: white; /* Cor do texto */
+  border: none; /* Sem borda */
+  border-radius: 4px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor em forma de mão ao passar o mouse */
+  font-size: 16px; /* Tamanho da fonte */
+  transition: background-color 0.3s; /* Efeito de transição */
+}
+
+/* Efeito de hover para os assentos */
+.seats button:hover {
+  background-color: #218838; /* Cor ao passar o mouse */
+}
+
+/* Estilo para assentos ocupados */
+.seats button.ocupado {
+  background-color: #dc3545; /* Cor para assentos ocupados */
+  cursor: not-allowed; /* Cursor de não disponível */
+}
+
+/* Estilo da legenda */
+.legenda {
+  display: flex; /* Alinhamento flexível para a legenda */
+  justify-content: space-around; /* Espaço entre os itens */
+  width: 100%; /* Ocupa toda a largura */
+  margin-top: 10px; /* Espaçamento acima da legenda */
+  font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Estilo dos status na legenda */
+.status {
+  display: flex;
+  align-items: center; /* Alinhamento central */
+}
+
+.disponível {
+  color: #28a745; /* Cor para disponível */
+  font-weight: bold; /* Negrito */
+  margin-right: 5px; /* Espaço entre o círculo e o texto */
+}
+
+.ocupado {
+  color: #dc3545; /* Cor para ocupado */
+  font-weight: bold; /* Negrito */
+}
+
+/* Círculos de status */
+.status::before {
+  content: ''; /* Necessário para criar um círculo */
+  width: 15px; /* Largura do círculo */
+  height: 15px; /* Altura do círculo */
+  border-radius: 50%; /* Círculo */
+  margin-right: 5px; /* Espaçamento à direita */
+}
+
+.disponível::before {
+  background-color: #28a745; /* Cor do círculo disponível */
+}
+
+.ocupado::before {
+  background-color: #dc3545; /* Cor do círculo ocupado */
+}
