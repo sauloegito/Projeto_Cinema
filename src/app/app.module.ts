@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'; // Certifique-se de que RouterModule está importado
 import { AppComponent } from './app.component';
 import { PrimeiraPaginaComponent } from './components/primeira-pagina/primeira-pagina.component';
@@ -24,7 +24,8 @@ import { EditarFilmeComponent } from './components/editar-filme/editar-filme.com
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule // Certifique-se de que AppRoutingModule está aqui
+    AppRoutingModule, // Certifique-se de que AppRoutingModule está aqui
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

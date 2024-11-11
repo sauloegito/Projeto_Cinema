@@ -42,15 +42,24 @@ export class FilmeService {
     return this.assentosPorFilmeESessao[filmeId][horario];
   }
 
-  ocuparAssento(filmeId: number, horario: string, numeroAssento: number): void {
+  ocuparAssento(filmeId: number, horario: string, numeroAssento: number, nome: string, cpf: string): void {
     const assento = this.assentosPorFilmeESessao[filmeId][horario]?.find(a => a.numero === numeroAssento);
-    if (assento) {
+    if (assento && !assento.ocupado) {
       assento.ocupado = true;
+      assento.nome = nome;
+      assento.cpf = cpf;
+      console.log(`Assento ${assento.numero} agora está ocupado`);
+    } else {
+      console.log(`Erro: Assento já ocupado ou não encontrado.`);
     }
   }
 
   private gerarAssentos(): Assento[] {
-    return Array.from({ length: 40 }, (_, i) => ({ numero: i + 1, ocupado: false }));
+    return Array.from({ length: 40 }, (_, i) => ({
+      numero: i + 1,
+      ocupado: false,
+      nome: '',
+      cpf: '' }));
   }
   
   
