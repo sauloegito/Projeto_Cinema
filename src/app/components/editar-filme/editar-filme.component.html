@@ -1,1 +1,15 @@
-<h1>teste</h1>
+<h2>Editar Filme</h2>
+<form [formGroup]="filmeForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="titulo">Título:</label>
+    <input id="titulo" formControlName="titulo" required />
+  </div>
+  
+  <div>
+    <label for="duracao">Duração (min):</label>
+    <input id="duracao" formControlName="duracao" type="number" required />
+  </div>
+  
+  <button type="submit" (click)="onSubmit()">Salvar</button>
+  <button type="button" (click)="cancelar()">Cancelar</button>
+</form>

@@ -2,37 +2,61 @@
 import { Injectable } from '@angular/core';
 import { Filme } from '../models/filmes';
 import { Assento } from '../models/assento';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmeService {
-  private filmes: Filme[] = [
+  excluirFilme(filmeId: number) {
+    throw new Error('Method not implemented.');
+  }
+  private filmesSubject = new BehaviorSubject<Filme[]>( [
     { id: 1, titulo: 'The Matrix', duracao: 140, posterURL: 'https://media.fstatic.com/Dsnc8_BpNuQaIP04acXtB2V8sU0=/322x478/smart/filters:format(webp)/media/movies/covers/2011/07/6aa590bdfc94c6589dba4dc303057495.jpg'},
     { id: 2, titulo: 'O ilusionista', duracao: 90, posterURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ-mi1hGavFqyhmD_Xm7JVQnbm6_XiKIEGM7BIPhHxOA20vR7cp'},
     { id: 3, titulo: 'Terrifier' , duracao: 82, posterURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS64MQjQg496AMli5m1k6-JBNaZdSDcRXjL2NBr3_bpVfwCOfQX'}
-  ];
+  ]);
 
+  filmes$ = this.filmesSubject.asObservable();
+  
+
+  atualizarFilme(filmeAtualizado: Filme): void {
+    const filmes = this.filmesSubject.getValue();
+    const index = filmes.findIndex(f => f.id === filmeAtualizado.id);
+
+    if (index !== -1) {
+      filmes[index] = { ...filmeAtualizado };
+      this.filmesSubject.next([...filmes]); // Emite a nova lista de filmes
+    } else {
+      console.error('Filme não encontrado para atualização.');
+    }
+  }
+  getFilmeById(filmeId: number): Filme| undefined {
+    return this.filmesSubject.getValue().find(filme => filme.id === filmeId);
+  }
+  
   private assentosPorFilmeESessao: { [filmeId: number]: { [horario: string]: Assento[] } } = {};
 
   private horariosDeSessao: string[] = [];
 
   constructor() {
-    this.filmes.forEach(filme => {
-      this.inicializarSessoes(filme.id);
+    this.filmes$.subscribe(filmes => {
+      filmes.forEach(filme => {
+        this.inicializarSessoes(filme.id);
+      });
     });
   }
 
   private nextId = 4;
 
-  getFilmes(): Filme[] {
-    return this.filmes;
+  getFilmes(): Observable<Filme[]> {
+    return this.filmes$;
   }
 
   adicionarFilmeService(titulo: string, duracao: number, posterURL: string): void {
     const novoFilme: Filme = { id: this.nextId++, titulo, duracao , posterURL };
-    this.filmes.push(novoFilme);
-    this.inicializarSessoes(novoFilme.id); // Inicializa as sessões e assentos para o novo filme
+    const filmes = [...this.filmesSubject.getValue(), novoFilme];
+    this.filmesSubject.next(filmes); // Inicializa as sessões e assentos para o novo filme
   }
 
   getAssentos(filmeId: number, horario: string): Assento[] {
@@ -65,11 +89,12 @@ export class FilmeService {
   
   private inicializarSessoes(filmeId: number): void {
     this.assentosPorFilmeESessao[filmeId] = {};
-    const duracao = this.filmes.find(f => f.id === filmeId)?.duracao || 0;
+
+    const duracao = this.filmesSubject.getValue().find(f => f.id === filmeId)?.duracao || 0;
     const duracaoEmMinutos = duracao + 20; // Duração do filme mais intervalo de 20 minutos
     const horarioInicial = 14 * 60; 
 
-    let horarioAtual = 14 * 60; // Inicia em 14:00 
+    let horarioAtual = horarioInicial; // Inicia em 14:00 
     const horarioFim = 23 * 60; // Termina em 23:00 
     
     while (horarioAtual < horarioFim) {
