@@ -62,7 +62,7 @@ export class AssentosComponent implements OnInit {
       this.selectedAssento.nome = nome;
       this.selectedAssento.cpf = cpf;
 
-      alert(`Assento ${this.selectedAssento.numero} confirmado para ${nome} (CPF: ${cpf}).`); // Confirmando o assento
+      alert(`Assento ${this.selectedAssento.numero} reservado para ${nome} (CPF: ${cpf}).`); // Confirmando o assento
 
       // Limpar os campos de nome e CPF após confirmar
       this.showModal = false;

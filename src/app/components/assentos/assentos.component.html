@@ -17,58 +17,30 @@
   </div> 
 </div>
 
-<!--O HTML do Formulário de reserva do assento-->
-<!--<div *ngIf="selectedAssento">
-  <h3>Confirmar Assento</h3>
-  <form [formGroup]="assentoForm" (ngSubmit)="confirmarAssento()">
-    <div class="form-group">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" formControlName="nome" placeholder="Digite seu nome" />
-      <div *ngIf="assentoForm.get('nome')?.touched && assentoForm.get('nome')?.invalid" class="error">
-        Nome é obrigatório e deve ter pelo menos 3 caracteres.
+<!-- Modal para formulário de reserva de assento no site -->
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="close-button" (click)="fecharModal()">×</span>
+    <h3>Reservar Assento</h3>
+    <form [formGroup]="assentoForm" (ngSubmit)="confirmarAssento()">
+      <div>
+        <label for="nome">Nome:</label>
+        <input id="nome" formControlName="nome" />
+        <div *ngIf="assentoForm.get('nome')?.invalid && assentoForm.get('nome')?.touched">
+          Nome é obrigatório e deve ter pelo menos 3 caracteres.
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="cpf">CPF:</label>
-      <input type="text" id="cpf" formControlName="cpf" placeholder="Digite seu CPF" />
-      <div *ngIf="assentoForm.get('cpf')?.touched && assentoForm.get('cpf')?.invalid" class="error">
-        CPF é obrigatório e deve seguir o formato xxx.xxx.xxx-xx.
+      <div>
+        <label for="cpf">CPF:</label>
+        <input id="cpf" formControlName="cpf" placeholder="000.000.000-00" />
+        <div *ngIf="assentoForm.get('cpf')?.invalid && assentoForm.get('cpf')?.touched">
+          CPF é obrigatório e deve seguir o formato 000.000.000-00.
+        </div>
       </div>
-    </div>
 
-    <button type="submit" [disabled]="assentoForm.invalid">Confirmar Assento</button>
-  </form>
-</div> -->
-
-<div class="modal" tabindex="-1" [ngClass]="{'show': showModal}" style="display: block;" (click)="fecharModal()">
-  <div class="modal-dialog" (click)="$event.stopPropagation()">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Confirmar Assento</h5>
-        <button type="button" class="close" (click)="fecharModal()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="assentoForm" (ngSubmit)="confirmarAssento()">
-          <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" formControlName="nome" placeholder="Digite seu nome" class="form-control" />
-            <div *ngIf="assentoForm.get('nome')?.touched && assentoForm.get('nome')?.invalid" class="error">
-              Nome é obrigatório e deve ter pelo menos 3 caracteres.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" formControlName="cpf" placeholder="Digite seu CPF" class="form-control" />
-            <div *ngIf="assentoForm.get('cpf')?.touched && assentoForm.get('cpf')?.invalid" class="error">
-              CPF é obrigatório e deve seguir o formato xxx.xxx.xxx-xx.
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary" [disabled]="assentoForm.invalid">Confirmar Assento</button>
-        </form>
-      </div>
-    </div>
+      <button type="submit" [disabled]="!assentoForm.valid">Reservar</button>
+    </form>
   </div>
 </div>
+
