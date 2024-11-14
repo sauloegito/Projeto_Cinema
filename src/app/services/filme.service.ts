@@ -13,12 +13,12 @@ export class FilmeService {
   }
   private filmesSubject = new BehaviorSubject<Filme[]>( [
     { id: 1, titulo: 'The Matrix', duracao: 140, posterURL: 'https://media.fstatic.com/Dsnc8_BpNuQaIP04acXtB2V8sU0=/322x478/smart/filters:format(webp)/media/movies/covers/2011/07/6aa590bdfc94c6589dba4dc303057495.jpg'},
-    { id: 2, titulo: 'O ilusionista', duracao: 90, posterURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ-mi1hGavFqyhmD_Xm7JVQnbm6_XiKIEGM7BIPhHxOA20vR7cp'},
+    { id: 2, titulo: 'O Ilusionista', duracao: 90, posterURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ-mi1hGavFqyhmD_Xm7JVQnbm6_XiKIEGM7BIPhHxOA20vR7cp'},
     { id: 3, titulo: 'Terrifier' , duracao: 82, posterURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS64MQjQg496AMli5m1k6-JBNaZdSDcRXjL2NBr3_bpVfwCOfQX'}
   ]);
 
   filmes$ = this.filmesSubject.asObservable();
-  
+
 
   atualizarFilme(filmeAtualizado: Filme): void {
     const filmes = this.filmesSubject.getValue();
@@ -34,7 +34,7 @@ export class FilmeService {
   getFilmeById(filmeId: number): Filme| undefined {
     return this.filmesSubject.getValue().find(filme => filme.id === filmeId);
   }
-  
+
   private assentosPorFilmeESessao: { [filmeId: number]: { [horario: string]: Assento[] } } = {};
 
   private horariosDeSessao: string[] = [];
@@ -85,23 +85,23 @@ export class FilmeService {
       nome: '',
       cpf: '' }));
   }
-  
-  
+
+
   private inicializarSessoes(filmeId: number): void {
     this.assentosPorFilmeESessao[filmeId] = {};
 
     const duracao = this.filmesSubject.getValue().find(f => f.id === filmeId)?.duracao || 0;
     const duracaoEmMinutos = duracao + 20; // Duração do filme mais intervalo de 20 minutos
-    const horarioInicial = 14 * 60; 
+    const horarioInicial = 14 * 60;
 
-    let horarioAtual = horarioInicial; // Inicia em 14:00 
-    const horarioFim = 23 * 60; // Termina em 23:00 
-    
+    let horarioAtual = horarioInicial; // Inicia em 14:00
+    const horarioFim = 23 * 60; // Termina em 23:00
+
     while (horarioAtual < horarioFim) {
         const hora = Math.floor(horarioAtual / 60);
         const minuto = horarioAtual % 60;
         const horarioFormatado = `${String(hora).padStart(2, '0')}:${String(minuto).padStart(2, '0')}`;
-        
+
         this.assentosPorFilmeESessao[filmeId][horarioFormatado] = this.gerarAssentos();
         horarioAtual += duracaoEmMinutos; // Próximo horário
     }

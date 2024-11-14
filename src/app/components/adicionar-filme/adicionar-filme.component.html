@@ -1,21 +1,20 @@
-<div class="adicionar-filme">
-    <h3>Adicionar Novo Filme</h3>
+<div class="form-group adicionar-filme">
+    <h3 class="display-5 text-center text-black">Adicionar Novo Filme</h3>
     <form (ngSubmit)="adicionarFilme(titulo.value, duracao.value, posterURL.value)">
-        <div>
-            <label>Título:</label>
-            <input type="text" id="titulo" #titulo required />
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título:</label>
+            <input type="text" id="titulo" #titulo required class="form-control"/>
         </div>
 
-        <div>
-            <label>Duração (minutos):</label>
-            <input type="text" id="duracao" #duracao placeholder="Duração em minutos" required min="1" />
+        <div class="mb-3">
+            <label for="duracao" class="form-label">Duração (minutos):</label>
+            <input type="text" id="duracao" #duracao placeholder="Duração em minutos" required min="1" class="form-control"/>
         </div>
-        
-        <div>
+
+        <div class="mb-3">
             <label>URL do Pôster:</label>
-            <input type="text" id="posterURL" #posterURL required />
+            <input type="text" id="posterURL" #posterURL required class="form-control"/>
         </div>
-        
         <button type="submit">Adicionar Filme</button>
     </form>
 </div>

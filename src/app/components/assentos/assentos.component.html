@@ -1,45 +1,68 @@
-<div class="cinema">
-  <h2>Selecione seu assento:</h2>
-
-  <div class="screen">Tela</div> <!-- Tela na frente dos assentos -->
-  <div class="seats">
-    <button
-      *ngFor="let assento of assentos"
-      [class.ocupado]="assento.ocupado"
-      (click)="selecionarAssento(assento)"
-    >
-      {{ assento.numero }}
-    </button>
+<div class="cinema container py-5">
+  <h2 class="text-center mb-4">Selecione seu assento:</h2>
+  <div class="screen mb-4 text-center">Tela</div>
+  <div class="seats row justify-content-center mb-4">
+    <div *ngFor="let assento of assentos" class="col-2 mb-1">
+      <button
+        *ngIf="!assento.ocupado"
+        class="btn btn-success w-10"
+        (click)="selecionarAssento(assento)"
+      >
+        {{ assento.numero }}
+      </button>
+      <button
+        *ngIf="assento.ocupado"
+        class="btn btn-danger w-100"
+        disabled
+      >
+        {{ assento.numero }}
+      </button>
+    </div>
   </div>
-  <div class="legenda">
-    <div class="status disponível">Disponível</div>
-    <div class="status ocupado">Ocupado</div>
-  </div> 
+  <div class="legenda text-center">
+    <div class="status disponível mb-2">
+      <span class="badge bg-success">Disponível</span>
+    </div>
+    <div class="status ocupado mb-2">
+      <span class="badge bg-danger">Ocupado</span>
+    </div>
+  </div>
 </div>
-
-<!-- Modal para formulário de reserva de assento no site -->
 <div *ngIf="showModal" class="modal-overlay">
   <div class="modal-content">
     <span class="close-button" (click)="fecharModal()">×</span>
-    <h3>Reservar Assento</h3>
+    <h3 class="text-center mb-4">Reservar Assento</h3>
     <form [formGroup]="assentoForm" (ngSubmit)="confirmarAssento()">
-      <div>
-        <label for="nome">Nome:</label>
-        <input id="nome" formControlName="nome" />
-        <div *ngIf="assentoForm.get('nome')?.invalid && assentoForm.get('nome')?.touched">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input
+          id="nome"
+          formControlName="nome"
+          class="form-control"
+          [class.is-invalid]="assentoForm.get('nome')?.invalid && assentoForm.get('nome')?.touched"
+        />
+        <div *ngIf="assentoForm.get('nome')?.invalid && assentoForm.get('nome')?.touched" class="invalid-feedback">
           Nome é obrigatório e deve ter pelo menos 3 caracteres.
         </div>
       </div>
 
-      <div>
-        <label for="cpf">CPF:</label>
-        <input id="cpf" formControlName="cpf" placeholder="000.000.000-00" />
-        <div *ngIf="assentoForm.get('cpf')?.invalid && assentoForm.get('cpf')?.touched">
+      <div class="mb-3">
+        <label for="cpf" class="form-label">CPF:</label>
+        <input
+          id="cpf"
+          formControlName="cpf"
+          placeholder="000.000.000-00"
+          class="form-control"
+          [class.is-invalid]="assentoForm.get('cpf')?.invalid && assentoForm.get('cpf')?.touched"
+        />
+        <div *ngIf="assentoForm.get('cpf')?.invalid && assentoForm.get('cpf')?.touched" class="invalid-feedback">
           CPF é obrigatório e deve seguir o formato 000.000.000-00.
         </div>
       </div>
 
-      <button type="submit" [disabled]="!assentoForm.valid">Reservar</button>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary" [disabled]="!assentoForm.valid">Reservar</button>
+      </div>
     </form>
   </div>
 </div>

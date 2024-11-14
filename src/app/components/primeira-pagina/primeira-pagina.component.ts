@@ -10,13 +10,15 @@ import { FilmeService } from '../../services/filme.service';
 })
 export class PrimeiraPaginaComponent implements OnInit {
   filmes: Filme[] = [];
- 
+  modalAberto = false;
+  filmeSelecionado: any;
+
   constructor(private filmeService: FilmeService) { }
+
 
   ngOnInit(): void {
     this.filmeService.getFilmes().subscribe((filmes: Filme[]) => {
       this.filmes = filmes;
     });
   }
- 
 }
