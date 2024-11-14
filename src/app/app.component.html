@@ -1,6 +1,26 @@
-<nav>
-    <a routerLink="/">Lista de Filmes</a> |
-    <a routerLink="/adicionar-filme">Cadastrar Filme</a> | 
-    <a routerLink="/gerenciar-filmes">Gerenciar Filme</a>
+<nav class="navbar navbar-expand-lg bg-dark bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+            <img src="logo.png" alt="Logomarca do CinePorto">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="f" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/">Lista de Filmes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/adicionar-filme">Cadastrar Filme</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/gerenciar-filmes">Gerenciar Filme</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
+
 <router-outlet></router-outlet>

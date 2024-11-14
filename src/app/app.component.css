@@ -1,4 +1,15 @@
-nav{
-    padding-top: 20px;
-    background-color:antiquewhite 
+nav {
+    padding: 10px 40px;
 }
+
+body {
+    padding-top: 30px;
+}
+
+.nav-link {
+    color: wheat;
+}
+.navbar-toggler-icon {
+    background-color: wheat;
+}
+

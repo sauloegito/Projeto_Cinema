@@ -10,11 +10,13 @@ import { FilmeService } from '../../services/filme.service';
 })
 export class PrimeiraPaginaComponent implements OnInit {
   filmes: Filme[] = [];
-  router: any;
-
+ 
   constructor(private filmeService: FilmeService) { }
 
   ngOnInit(): void {
-    this.filmes = this.filmeService.getFilmes();
+    this.filmeService.getFilmes().subscribe((filmes: Filme[]) => {
+      this.filmes = filmes;
+    });
   }
+ 
 }

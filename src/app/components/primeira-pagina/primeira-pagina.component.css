@@ -1,45 +1,77 @@
+/* Importando a fonte Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Estilos gerais da página */
 .pagina-filmes {
-    margin-top: 117px;
-    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
+    color: #333333;  /* Cor de texto mais suave */
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;  /* Cor de fundo suave */
 }
 
+/* Título da página */
+.pagina-filmes h3 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 20px;
+    color: #2c3e50;  /* Cor mais escura para o título */
+}
+
+/* Lista de filmes */
 .lista-filmes {
     width: 100%;
     margin-top: 40px;
-    gap: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.filme {
-    width: 145px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    /* Exibe a imagem e o título em coluna */
-    align-items: center;
-    padding-top: 10px;
+/* Estilo dos cards */
+.card {
+    border: none;
+    border-radius: 10px;  /* Arredondando os cantos */
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 250px;
+    margin-bottom: 30px;  /* Espaço entre os cards */
     cursor: pointer;
 }
 
-.cartaz img {
-    width: 129px;
-    height: 193px;
-    border-radius: 3px;
+/* Efeito de hover nos cards */
+.card:hover {
+    transform: translateY(-8px);  /* Efeito de elevação */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);  /* Sombra mais intensa ao passar o mouse */
 }
 
-.titulo {
-    margin-top: 10px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    color: #293845;
+/* Imagem do filme (cartaz) */
+.card-img-top {
+    object-fit: cover;
+    height: 350px;  /* Altura fixa para as imagens */
+    width: 100%;
+    border-bottom: 1px solid #ddd;  /* Linha separando a imagem do conteúdo */
+}
+
+/* Estilo do título dentro do card */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #34495e;  /* Cor de título mais escura */
     text-align: center;
+}
+
+
+/* Responsividade: Ajustando o layout para telas menores */
+@media (max-width: 767px) {
+    .card-deck {
+        display: block;
+    }
+
+    .pagina-filmes h3 {
+        font-size: 1.5rem;
+    }
 }
