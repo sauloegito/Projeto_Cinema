@@ -11,6 +11,7 @@ import { FilmeService } from '../../services/filme.service';
 })
 export class GerenciarFilmesComponent implements OnInit {
   filmes: Filme[] = [];
+ 
 
   constructor(private filmeService: FilmeService, private router: Router) {}
 

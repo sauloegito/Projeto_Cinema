@@ -1,19 +1,21 @@
-<div class="sessao-container container py-5">
-  <h3 class="text-center mb-4">Selecione o horário da sessão</h3>
+<div class="sessao-container">
+  <img class="poster-imagem" [src]="posterUrl" alt="Poster do Filme">
 
-  <!-- Sessões com cartões -->
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <div *ngFor="let horario of sessoes" class="col">
-      <div class="card text-center shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Horário: {{ horario }}</h5>
-          <button
-            class="btn btn-dark w-100"
-            (click)="selecionarSessao(horario)">
-            Selecionar Sessão
-          </button>
-        </div>
-      </div>
-    </div>
+  <div class="informacoes-filme">
+    <h3>{{titulo}}</h3>
+    <p>{{sinopse}}</p>
+  </div>
+</div>
+
+<div class="sessao-info">
+  <div class="cinema-nome">
+   CinePorto
+  </div>
+
+  <h3 class="text-center mb-4">Selecione o horário da sessão</h3>
+  <div class="sessao-horarios" >
+    <button *ngFor="let horario of sessoes" (click)="selecionarSessao(horario)">
+      {{ horario }}
+    </button>
   </div>
 </div>

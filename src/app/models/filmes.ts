@@ -3,4 +3,6 @@ export interface Filme {
     titulo: string;
     duracao: number;
     posterURL: string;
+    sinopse: string;
+    salaId?: number;
 }

@@ -11,6 +11,9 @@ import { FilmeService } from '../../services/filme.service';
 })
 export class SessaoComponent implements OnInit {
   sessoes: string[] = [];
+  posterUrl: string = '';
+  titulo: string = '';
+  sinopse!: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private filmeService: FilmeService) { }
 
@@ -18,7 +21,13 @@ export class SessaoComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id'); // Pega o ID do filme
     if (id) {
       const filmeId = parseInt(id, 10);
-      this.sessoes = Object.keys(this.filmeService['assentosPorFilmeESessao'][filmeId]);
+      const filme = this.filmeService.getFilmeById(filmeId);
+      if (filme) {
+        this.titulo = filme.titulo;
+        this.posterUrl = filme.posterURL;
+        this.sinopse=filme.sinopse;
+        this.sessoes = Object.keys(this.filmeService['assentosPorFilmeESessao'][filmeId] || {});
+      }
     }
   }
 

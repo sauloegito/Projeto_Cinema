@@ -1,33 +1,45 @@
-<div class="cinema container py-5">
-  <h2 class="text-center mb-4">Selecione seu assento:</h2>
-  <div class="screen mb-4 text-center">Tela</div>
-  <div class="seats row justify-content-center mb-4">
-    <div *ngFor="let assento of assentos" class="col-2 mb-1">
-      <button
-        *ngIf="!assento.ocupado"
-        class="btn btn-success w-10"
-        (click)="selecionarAssento(assento)"
-      >
-        {{ assento.numero }}
-      </button>
-      <button
-        *ngIf="assento.ocupado"
-        class="btn btn-danger w-100"
-        disabled
-      >
+<div class="cinema-container py-5">
+  <div class="cinema">
+    <div class="screen mb-4 text-center">Tela</div>
+    <div class="seats row justify-content-center mb-4">
+      <button *ngFor="let assento of assentos"
+      [class.ocupado]="assento.ocupado" 
+      [class.selecionado]="assento.selecionado"
+        (click)="selecionarAssento(assento)">
         {{ assento.numero }}
       </button>
     </div>
+
+    <div class="legenda text-center">
+      <div class="status disponível mb-2">
+        <span class="badge bg-primary">Disponível</span>
+      </div>
+
+      <div class="status selecionado mb-2">
+        <span class="badge bg-warning">selecionado</span>
+      </div>
+
+      <div class="status ocupado mb-2">
+        <span class="badge bg-danger">Ocupado</span>
+      </div>
+    </div>
+    <button class="reservar-assento" (click)="abrirModal()">Reservar Assento</button>
   </div>
-  <div class="legenda text-center">
-    <div class="status disponível mb-2">
-      <span class="badge bg-success">Disponível</span>
+
+  <div class="resumo-pedido">
+    <div class="poster-filme">
+      <img class="poster-imagem" [src]="posterUrl" alt="Poster do Filme">
     </div>
-    <div class="status ocupado mb-2">
-      <span class="badge bg-danger">Ocupado</span>
+    <div class="detalhes-filme">
+      <h2>{{titulo}}</h2>
+      <p>tipo: {{tipo}}</p>
+      <p>Cine do Porto<br>Sala: {{sala}}</p>
+      <p><strong>Horario - {{horario}}</strong></p>
     </div>
   </div>
 </div>
+
+<!-- Modal para formulário de reserva de assento -->
 <div *ngIf="showModal" class="modal-overlay">
   <div class="modal-content">
     <span class="close-button" (click)="fecharModal()">×</span>
@@ -53,6 +65,8 @@
           formControlName="cpf"
           placeholder="000.000.000-00"
           class="form-control"
+          (input)="mascararCPF()"
+          maxlength="14"
           [class.is-invalid]="assentoForm.get('cpf')?.invalid && assentoForm.get('cpf')?.touched"
         />
         <div *ngIf="assentoForm.get('cpf')?.invalid && assentoForm.get('cpf')?.touched" class="invalid-feedback">
@@ -66,4 +80,3 @@
     </form>
   </div>
 </div>
-

@@ -1,0 +1,114 @@
+/* Estilos gerais para o container da sessão */
+
+.sessao-container {
+    display: flex;
+    flex-direction: row;
+    /* Alinha o poster e as informações lado a lado */
+    justify-content: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    /* Usa toda a altura da tela */
+    
+}
+
+/* Estilo para a imagem do poster */
+.poster-imagem {
+    width: 149px;
+    height: 213px;
+    border-radius: 10px;
+    margin-right: 20px;
+    
+    
+}
+
+/* Container para as informações do filme (título, descrição) */
+.informacoes-filme {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 50%;
+    background-color: #f8f9fa;
+    
+
+}
+
+/* Estilo para o título do filme */
+h3 {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilo para a descrição do filme */
+p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Estilo para o nome do cinema e sessões (fica abaixo do poster) */
+.sessao-info {
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 97%;
+    background-color: #dfdfdf;
+    border-radius: 10px; /* Arredonda os cantos */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para efeito flutuante */
+    padding: 15px; /* Adiciona espaçamento interno */
+    position: relative;
+    z-index: 1;
+    margin: 20px;
+}
+
+/* Estilo para o nome do cinema */
+.cinema-nome {
+    padding: 10px;
+    background-color:#585858;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 5px; /* Arredonda os cantos */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15); /* Sombra leve */
+    text-align: center;
+}
+
+/* Container para os botões das sessões - ajustando para disposição em linha */
+.sessao-horarios {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-radius: 8px; /* Arredonda os cantos */
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    padding: 10px; /* Adiciona espaçamento interno */
+    background-color: #dfdfdf; /* Fundo leve para destaque */
+}
+
+
+/* Estilo para os botões de horários das sessões */
+.sessao-horarios button {
+    padding: 10px 20px;
+    background-color: #727272;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 100px;
+    /* Garante um tamanho mínimo para os botões */
+}
+
+.sessao-horarios button:hover {
+    background-color:  #333;
+}
