@@ -186,7 +186,7 @@
   }
 }
 
-/*
+/* CSS DO TEMPLATE DA MATRIZ */
 .assentos-container {
   display: flex;
   flex-direction: column;
@@ -218,4 +218,4 @@
 .assento.ocupado {
   background-color: red;
   color: white;
-}*/
+}
