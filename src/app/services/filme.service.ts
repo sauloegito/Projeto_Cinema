@@ -69,7 +69,7 @@ export class FilmeService {
 
   private horariosDeSessao: string[] = [];
 
-  constructor() {
+  constructor(private cinemaService: CinemaService) {
     this.filmes$.subscribe(filmes => {
       filmes.forEach(filme => {
         this.inicializarSessoes(filme.id);

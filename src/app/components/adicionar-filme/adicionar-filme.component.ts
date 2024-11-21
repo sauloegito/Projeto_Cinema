@@ -16,7 +16,7 @@ export class AdicionarFilmeComponent {
   tipo!: string;
   duracao: number | null = null;
   salaId: number | null = null;
-  salas: { id: number, capacidade: number, tipo: string }[] = [];
+  salas: { id: number, capacidade: number, tipo: string, ocupada: boolean }[] = [];
 
   constructor(private router: Router, private filmeService: FilmeService, private cinemaService: CinemaService) { } 
 
@@ -31,8 +31,29 @@ export class AdicionarFilmeComponent {
     this.sinopse = sinopse;
     this.salaId = Number(numeroSala);
 
-    if (this.titulo && this.salaId, this.posterURL && this.duracao !== null && this.sinopse) { // Verifica se todos os campos estão preenchidos
-      this.filmeService.adicionarFilmeService(this.titulo,this.salaId, this.duracao, this.posterURL, this.sinopse);
+    if (this.titulo && this.salaId && this.posterURL && this.duracao !== null && this.sinopse) { // Verifica se todos os campos estão preenchidos
+     
+      // Verifica se a sala escolhida está ocupada
+      if (this.cinemaService.isSalaOcupada(this.salaId)) {
+        // Se a sala está ocupada, tenta encontrar uma sala disponível
+        const salaDisponivel = this.salas.find(sala => !sala.ocupada);
+
+        if (salaDisponivel) {
+          // Se encontrar uma sala disponível, sugere essa sala
+          alert(`A sala ${this.salaId} está ocupada. O filme será adicionado à sala ${salaDisponivel.id}.`);
+          this.salaId = salaDisponivel.id;
+        } else {
+          // Se não houver salas disponíveis
+          alert('Não há salas disponíveis no momento.');
+          return;
+        }
+      }
+
+      this.filmeService.adicionarFilmeService(this.titulo,this.salaId, this.duracao, this.posterURL, this.sinopse);// Adiciona o filme
+
+       // Marca a sala como ocupada
+       this.cinemaService.ocuparSala(this.salaId);
+       
       alert('Filme adicionado com sucesso!');
       this.router.navigate(['/']);
     } else {

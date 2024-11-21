@@ -6,18 +6,42 @@ import { Sala } from '../models/sala';
 })
 export class CinemaService {
   private salas: Sala[] = [
-    { id: 1, capacidade: 40, tipo: '3D' },
-    { id: 2, capacidade: 60, tipo: 'IMAX' },
-    { id: 3, capacidade: 80, tipo: '2D' }
+    { id: 1, capacidade: 40, tipo: '3D', ocupada: true},
+    { id: 2, capacidade: 60, tipo: 'IMAX', ocupada: true },
+    { id: 3, capacidade: 80, tipo: '2D',ocupada: true },
+    { id: 4, capacidade: 40, tipo: '3D', ocupada: false},
+    { id: 5, capacidade: 60, tipo: 'IMAX', ocupada: false },
+    { id: 6, capacidade: 80, tipo: '2D',ocupada: false }
   ];
 
   constructor() {}
 
-  getSalas(): { id: number, capacidade: number, tipo: string }[] {
+  getSalas(): { id: number, capacidade: number, tipo: string, ocupada: boolean }[] {
     return this.salas;
   }
   
   getSalaById(salaId: number): Sala | undefined {
     return this.salas.find(sala => sala.id === salaId);
+  }
+  // Verificar se uma sala está ocupada
+  isSalaOcupada(salaId: number): boolean {
+    const sala = this.getSalaById(salaId);
+    return sala ? sala.ocupada : false;
+  }
+
+  // Marcar a sala como ocupada
+  ocuparSala(salaId: number): void {
+    const sala = this.getSalaById(salaId);
+    if (sala) {
+      sala.ocupada = true;
+    }
+  }
+
+  // Marcar a sala como desocupada
+  desocuparSala(salaId: number): void {
+    const sala = this.getSalaById(salaId);
+    if (sala) {
+      sala.ocupada = false;
+    }
   }
 }

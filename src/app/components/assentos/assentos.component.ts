@@ -11,7 +11,8 @@ import { Assento } from '../../models/assento';
   styleUrls: ['./assentos.component.css']
 })
 export class AssentosComponent implements OnInit {
-  assentos: Assento[] = [];
+
+  assentos: Assento[][] = [];
   filmeId!: number;
   horario!: string;
   posterUrl!: string;
@@ -19,12 +20,13 @@ export class AssentosComponent implements OnInit {
   sala!: number;
   tipo!: string;
   selectedAssentos: Assento[] = [];; // Assento que o usuário selecionou
-  assentoForm: FormGroup; //Formulário com nome ecpf, para reservar assento
+  assentoForm!: FormGroup; //Formulário com nome ecpf, para reservar assento
   showModal: boolean = false; //Controla a exibição do modal do forms
 
   constructor(private route: ActivatedRoute, private filmeService: FilmeService, 
     private cinemaService: CinemaService, private fb: FormBuilder) {
-
+    
+    //Inicializa o forms
     this.assentoForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]], // Validação para o nome
       cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]], // Validação para o CPF
@@ -45,11 +47,21 @@ export class AssentosComponent implements OnInit {
       if(tipoSala){
         this.tipo = tipoSala?.tipo;
       }
-      this.assentos = this.filmeService.getAssentos(this.filmeId, this.horario, this.sala);
-     
+      const assentosNaoFormatados = this.filmeService.getAssentos(this.filmeId, this.horario, this.sala);
+      console.log(assentosNaoFormatados)
+      const colunas = 10; // Ajuste conforme necessário
+    this.assentos = this.formatarAssentos(assentosNaoFormatados, colunas); // Formata os assentos
     }
   }
-
+  // Adicionado 21.11
+  formatarAssentos(assentos: Assento[], colunas: number): Assento[][] {
+    const linhas: Assento[][] = [];
+    for (let i = 0; i < assentos.length; i += colunas) {
+      linhas.push(assentos.slice(i, i + colunas));
+    }
+    return linhas;
+  }
+  
   selecionarAssento(assento: Assento): void {
     if (assento.ocupado) {
       alert(`Assento ${assento.numero} já está ocupado na sessão das ${this.horario}.`);

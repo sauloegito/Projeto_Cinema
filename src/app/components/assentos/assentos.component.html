@@ -1,3 +1,4 @@
+
 <div class="cinema-container py-5">
   <div class="cinema">
     <div class="screen mb-4 text-center">Tela</div>
@@ -6,7 +7,7 @@
       [class.ocupado]="assento.ocupado" 
       [class.selecionado]="assento.selecionado"
         (click)="selecionarAssento(assento)">
-        {{ assento.numero }}
+        {{ assento.numero}}
       </button>
     </div>
 
@@ -38,6 +39,52 @@
     </div>
   </div>
 </div>
+<!-- TEMPLATE DA MATRIZ! MAS FALTA AJUSTAR
+<div class="cinema-container py-5">
+  <div class="cinema">
+    <div class="screen mb-4 text-center">Tela</div>
+    <div class="assentos-container justify-content">  <!--seats row justify-content-center mb-4
+
+      <div *ngFor="let linha of assentos; let i = index" class="linha-assentos">
+        <button 
+        *ngFor="let assento of linha"
+        [class.selecionado]="assento.selecionado"
+        [class.ocupado]="assento.ocupado" 
+          (click)="selecionarAssento(assento)"
+          class="assento">
+          {{ assento.numero }}
+        </button>
+      </div>  
+    </div>
+
+    <div class="legenda text-center">
+      <div class="status disponível mb-2">
+        <span class="badge bg-primary">Disponível</span>
+      </div>
+
+      <div class="status selecionado mb-2">
+        <span class="badge bg-warning">selecionado</span>
+      </div>
+
+      <div class="status ocupado mb-2">
+        <span class="badge bg-danger">Ocupado</span>
+      </div>
+    </div>
+    <button class="reservar-assento" (click)="abrirModal()">Reservar Assento</button>
+  </div>
+
+  <div class="resumo-pedido">
+    <div class="poster-filme">
+      <img class="poster-imagem" [src]="posterUrl" alt="Poster do Filme">
+    </div>
+    <div class="detalhes-filme">
+      <h2>{{titulo}}</h2>
+      <p>tipo: {{tipo}}</p>
+      <p>Cine do Porto<br>Sala: {{sala}}</p>
+      <p><strong>Horario - {{horario}}</strong></p>
+    </div>
+  </div>
+</div> -->
 
 <!-- Modal para formulário de reserva de assento -->
 <div *ngIf="showModal" class="modal-overlay">

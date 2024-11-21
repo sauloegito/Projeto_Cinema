@@ -185,3 +185,37 @@
     grid-template-columns: repeat(4, 1fr); /* Ajuste para celulares */
   }
 }
+
+/*
+.assentos-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.linha-assentos {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.assento {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  background-color: lightgray;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.assento.selecionado {
+  background-color: blue;
+  color: white;
+}
+
+.assento.ocupado {
+  background-color: red;
+  color: white;
+}*/
