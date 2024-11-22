@@ -1,0 +1,70 @@
+<div class="form-group editar-filme">
+    <h3 class="text-center text-black">
+        {{ filmeId ? 'Editar' : 'Cadastrar'}} Filme
+    </h3>
+    <form [formGroup]="filmeForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+
+            <div class="col-sm-8">
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" id="titulo" formControlName="titulo" required />
+            </div>
+
+            <div class="col-sm-4">
+                <label for="salaId">Sala de Exibição:</label>
+                <select class="form-control" id="salaId" formControlName="salaId" required>
+                    <option *ngFor="let sala of salas" [value]="sala.id">
+                        {{ sala.id }} - {{ sala.tipo }} ({{ sala.capacidade }} assentos)
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-sm-4" [ngClass]="{'has-error': integridadeCom || (filmeForm.get('inicio')?.invalid && filmeForm.get('inicio')?.touched)}" >
+                <label for="inicio">Horário Inicial:</label>
+                <input type="text" class="form-control" 
+                    id="inicio" formControlName="inicio" placeholder="HH:MM" maxlength="5"
+                    (input)="mascararHorario()" required />
+
+                <div *ngIf="filmeForm.get('inicio')?.invalid && filmeForm.get('inicio')?.touched" class="invalid-feedback">
+                    Horário Inicial é obrigatório e deve seguir o formato 00:00.
+                </div>
+            </div>
+
+            <div class="col-sm-4" [ngClass]="{'has-error': integridadeCom || (filmeForm.get('duracao')?.invalid && filmeForm.get('duracao')?.touched)}" >
+                <label for="duracao">Duração (minutos):</label>
+                <input type="number" class="form-control" id="duracao" formControlName="duracao"
+                    placeholder="Duração em minutos" required min="1" />
+
+                <div *ngIf="filmeForm.get('duracao')?.invalid && filmeForm.get('duracao')?.touched" class="invalid-feedback">
+                    Duração é obrigatória.
+                </div>
+            </div>
+
+            <div class="col-sm-4" [ngClass]="{'has-error': integridadeCom}" >
+                <label for="sessoes">Qtd Sessões (Optional):</label>
+                <input type="number" class="form-control" id="sessoes" formControlName="sessoes" placeholder="Sessões por dia" />
+            </div>
+
+            <div *ngIf="integridadeCom" class="invalid-feedback col-sm-12 text-center" >
+                Conflito de Horário na mesma Sala com '<strong>{{ integridadeCom }}</strong>'!
+            </div>
+
+            <div class="col-sm-12">
+                <label for="posterURL">URL do Pôster:</label>
+                <input type="text" class="form-control" id="posterURL" formControlName="posterURL" required />
+            </div>
+
+            <div class="col-sm-12">
+                <label for="sinopse">Sinopse:</label>
+                <textarea class="form-control" id="sinopse" formControlName="sinopse" rows="5" required
+                    placeholder="Digite a sinopse do filme aqui..."></textarea>
+            </div>
+        </div>
+        <div class="row buttons">
+            <button *ngIf="!filmeId" type="submit" class="btn btn-primary col-sm-6">Adicionar Filme</button>
+            <button *ngIf="filmeId" type="submit" class="btn btn-primary col-sm-5">Salvar Alterações</button>
+            <button *ngIf="filmeId" type="cancelar" class="btn btn-secondary col-sm-5" (click)="cancelar()">Cancelar</button>
+        </div>
+
+    </form>
+</div>

@@ -1,7 +1,7 @@
 // sessao.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FilmeService } from '../../services/filme.service';
+import { CinemaService } from '../../../services/cinema.service';
 
 
 @Component({
@@ -15,18 +15,22 @@ export class SessaoComponent implements OnInit {
   titulo: string = '';
   sinopse!: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, private filmeService: FilmeService) { }
+  constructor(
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly service: CinemaService
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id'); // Pega o ID do filme
     if (id) {
       const filmeId = parseInt(id, 10);
-      const filme = this.filmeService.getFilmeById(filmeId);
+      const filme = this.service.getFilmeById(filmeId);
       if (filme) {
         this.titulo = filme.titulo;
         this.posterUrl = filme.posterURL;
-        this.sinopse=filme.sinopse;
-        this.sessoes = Object.keys(this.filmeService['assentosPorFilmeESessao'][filmeId] || {});
+        this.sinopse = filme.sinopse;
+        this.sessoes = this.service.getSessoes(filmeId);
       }
     }
   }

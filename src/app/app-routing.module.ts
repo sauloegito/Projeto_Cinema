@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PrimeiraPaginaComponent } from './components/primeira-pagina/primeira-pagina.component';
-import { AdicionarFilmeComponent } from './components/adicionar-filme/adicionar-filme.component'; // Importar o componente de adicionar filmes
-import { SessaoComponent } from './components/sessao/sessao.component';
-import { AssentosComponent } from './components/assentos/assentos.component';
-import { GerenciarFilmesComponent } from './components/gerenciar-filmes/gerenciar-filmes.component';
-import { EditarFilmeComponent } from './components/editar-filme/editar-filme.component';
+import { AssentosComponent } from './pages/filmes/assentos/assentos.component';
+import { CadastroFilmeComponent } from './pages/filmes/cadastro/cadastro.component';
+import { GerenciarFilmesComponent } from './pages/filmes/gerenciar/gerenciar.component';
+import { SessaoComponent } from './pages/filmes/sessao/sessao.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: PrimeiraPaginaComponent },
-  { path: 'adicionar-filme', component: AdicionarFilmeComponent }, // Rota para o componente de adicionar filmes
+  { path: 'filmes', component: HomeComponent },
+  { path: 'gerenciar-filmes', component: GerenciarFilmesComponent },
+  { path: 'editar-filme/:id', component: CadastroFilmeComponent },
+  { path: 'adicionar-filme', component: CadastroFilmeComponent },
   { path: 'sessao/:id', component: SessaoComponent },
   { path: 'sessao/:id/assentos', component: AssentosComponent },
-  { path: 'gerenciar-filmes', component: GerenciarFilmesComponent },
-  { path: 'editar-filme/:id', component: EditarFilmeComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'filmes' },
 ];
 
 @NgModule({

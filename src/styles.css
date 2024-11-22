@@ -3,3 +3,39 @@ body{
         background-color: #f8f9fa;
    
 }
+
+
+.seats .row {
+        display: flex;
+}
+
+.seats .row button {
+        padding: 10px;
+        margin-right: 5px;
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 16px;
+        width: 2.6em;
+        height: 2.6em;
+        transition: background-color 0.3s;
+}
+
+.seats .row button.ocupado {
+        background-color: #dc3545;
+        cursor: not-allowed;
+}
+
+.seats .row button.selecionado {
+        background-color: #ffc107;
+}
+
+.seats .row button.indisponivel {
+        visibility: hidden;
+}
+
+.invalid-feedback {
+        display: block;
+}

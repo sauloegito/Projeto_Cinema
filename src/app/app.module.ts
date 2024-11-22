@@ -1,25 +1,22 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // Certifique-se de que RouterModule está importado
-import { AppComponent } from './app.component';
-import { PrimeiraPaginaComponent } from './components/primeira-pagina/primeira-pagina.component';
-import { AdicionarFilmeComponent } from './components/adicionar-filme/adicionar-filme.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { SessaoComponent } from './components/sessao/sessao.component';
-import { AssentosComponent } from './components/assentos/assentos.component';
-import { GerenciarFilmesComponent } from './components/gerenciar-filmes/gerenciar-filmes.component';
-import { EditarFilmeComponent } from './components/editar-filme/editar-filme.component'; // Importando AppRoutingModule
+import { AppComponent } from './app.component';
+import { AssentosComponent } from './pages/filmes/assentos/assentos.component';
+import { CadastroFilmeComponent } from './pages/filmes/cadastro/cadastro.component'; // Importando AppRoutingModule
+import { GerenciarFilmesComponent } from './pages/filmes/gerenciar/gerenciar.component';
+import { SessaoComponent } from './pages/filmes/sessao/sessao.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PrimeiraPaginaComponent,
-    AdicionarFilmeComponent,
     SessaoComponent,
     AssentosComponent,
+    HomeComponent,
     GerenciarFilmesComponent,
-    EditarFilmeComponent
+    CadastroFilmeComponent
   ],
   imports: [
     BrowserModule,

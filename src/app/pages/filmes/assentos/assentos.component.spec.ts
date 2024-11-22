@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AssentosComponent } from './assentos.component';
+import { AppRoutingModule } from '../../app-routing.module';
 
 describe('AssentosComponent', () => {
   let component: AssentosComponent;
@@ -8,7 +9,8 @@ describe('AssentosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AssentosComponent]
+      declarations: [AssentosComponent],
+      imports: [AppRoutingModule]
     })
     .compileComponents();
 

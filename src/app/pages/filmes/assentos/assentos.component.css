@@ -33,31 +33,10 @@
 }
 
 .seats {
-  display: grid;
-  grid-template-columns: repeat(16, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
-}
-
-.seats button {
-  padding: 10px;
-  margin-right: 5px;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.seats button.ocupado {
-  background-color: #dc3545;
-  cursor: not-allowed;
-}
-
-.seats button.selecionado {
-  background-color: #ffc107;
 }
 
 .legenda {
@@ -71,26 +50,6 @@
   display: flex;
   align-items: center;
   font-weight: bold;
-}
-
-.status::before {
-  content: '';
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  margin-right: 5px;
-}
-
-.disponível::before {
-  background-color: #4a90e2;
-}
-
-.ocupado::before {
-  background-color: #dc3545;
-}
-
-.selecionado::before {
-  background-color: #ffc107;
 }
 
 .resumo-pedido {
@@ -123,18 +82,19 @@
   font-size: 14px;
   margin: 5px 0;
 }
-.reservar-assento{
-    margin: 20px;
-    background-color: #949494;
-    border: none;
-    border-radius: 10px;
-    padding: 6px 12px;
-    color: white;
-    cursor: pointer;
+
+.reservar-assento {
+  margin: 20px;
+  background-color: #949494;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 12px;
+  color: white;
+  cursor: pointer;
 }
 
 .reservar-assento:hover {
-    background-color:  #6b6a6a;
+  background-color: #6b6a6a;
 }
 
 
@@ -161,61 +121,11 @@
 }
 
 .close-button {
-  float: right;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  text-decoration: none;
   font-size: 1.5em;
   cursor: pointer;
   color: #888;
-}
-
-
-@media (max-width: 1200px) {
-  .seats {
-    grid-template-columns: repeat(12, 1fr); /* Ajuste para telas médias */
-  }
-}
-
-@media (max-width: 768px) {
-  .seats {
-    grid-template-columns: repeat(6, 1fr); /* Ajuste para tablets */
-  }
-}
-
-@media (max-width: 480px) {
-  .seats {
-    grid-template-columns: repeat(4, 1fr); /* Ajuste para celulares */
-  }
-}
-
-/* CSS DO TEMPLATE DA MATRIZ */
-.assentos-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.linha-assentos {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.assento {
-  width: 40px;
-  height: 40px;
-  margin: 5px;
-  background-color: lightgray;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.assento.selecionado {
-  background-color: blue;
-  color: white;
-}
-
-.assento.ocupado {
-  background-color: red;
-  color: white;
 }

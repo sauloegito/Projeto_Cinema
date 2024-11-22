@@ -1,5 +1,5 @@
-.adicionar-filme {
-    max-width: 600px;
+.editar-filme {
+    max-width: 800px;
     margin: 30px auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -7,21 +7,26 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.adicionar-filme h3 {
+.editar-filme h3 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
 }
 
+.has-error input {
+    border: 2px solid red;
+}
+
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    row-gap: 20px;
+    column-gap: 15px;
 }
 
-form div {
+form div.row.buttons{
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
 }
 
 label {
@@ -30,7 +35,9 @@ label {
     color: #555;
 }
 
-input[type="text"], select, textarea {
+input[type="text"],
+select,
+textarea {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
@@ -38,26 +45,24 @@ input[type="text"], select, textarea {
     outline: none;
 }
 
-input[type="text"]:focus, select:focus, textarea:focus {
-    border-color: #007bff;
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    background-color: #727272;
 }
 
 textarea {
     resize: vertical;
 }
 
-button[type="submit"] {
+button[type="submit"],
+button[type="cancelar"] {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 20px;
 }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}

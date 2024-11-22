@@ -7,9 +7,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #333333;  /* Cor de texto mais suave */
+    color: #333333;
+    /* Cor de texto mais suave */
     font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;  /* Cor de fundo suave */
+    background-color: #f8f9fa;
+    /* Cor de fundo suave */
 }
 
 /* Título da página */
@@ -17,7 +19,8 @@
     font-size: 2rem;
     font-weight: 500;
     margin: 20px;
-    color: #2c3e50;  /* Cor mais escura para o título */
+    color: #2c3e50;
+    /* Cor mais escura para o título */
 }
 
 /* Lista de filmes */
@@ -32,35 +35,43 @@
 /* Estilo dos cards */
 .card {
     border: none;
-    border-radius: 10px;  /* Arredondando os cantos */
+    border-radius: 10px;
+    /* Arredondando os cantos */
     overflow: hidden;
     background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 250px;
-    margin-bottom: 30px;  /* Espaço entre os cards */
+    margin-bottom: 30px;
+    /* Espaço entre os cards */
     cursor: pointer;
 }
 
 /* Efeito de hover nos cards */
 .card:hover {
-    transform: translateY(-8px);  /* Efeito de elevação */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);  /* Sombra mais intensa ao passar o mouse */
+    transform: translateY(-8px);
+    /* Efeito de elevação */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    /* Sombra mais intensa ao passar o mouse */
 }
 
 /* Imagem do filme (cartaz) */
 .card-img-top {
     object-fit: cover;
-    height: 350px;  /* Altura fixa para as imagens */
+    height: 350px;
+    /* Altura fixa para as imagens */
     width: 100%;
-    border-bottom: 1px solid #ddd;  /* Linha separando a imagem do conteúdo */
+    border-bottom: 1px solid #ddd;
+    /* Linha separando a imagem do conteúdo */
 }
 
 /* Estilo do título dentro do card */
 .card-title {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #34495e;  /* Cor de título mais escura */
+    color: #34495e;
+    /* Cor de título mais escura */
     text-align: center;
 }
 
